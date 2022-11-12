@@ -1,14 +1,16 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
 import {Home, ShowCountry} from './pages';
 import {Navbar} from './components';
 import { CountriesProvider } from './context/ContriesContext';
 
+import { Container } from 'react-bootstrap';
+
 function App() {
 
   const [mode, setMode] = useState('light')
-  function changeMode():void {setMode((mode === 'light') ? 'dark' : 'light')}
+  function changeMode():void {setMode(mode === 'light' ? 'dark' : 'light')}
 
   return (
     <CountriesProvider>
@@ -16,8 +18,8 @@ function App() {
       <div className="App">
         <Navbar mode={mode} changeMode={changeMode} />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/country/:id' element={<ShowCountry />} />
+          <Route path='/' element={<Home mode={mode} />} />
+          <Route path='/country/:name' element={<ShowCountry />} />
         </Routes>
       </div>
       </BrowserRouter>

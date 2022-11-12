@@ -17,7 +17,7 @@ const Navbar = ({mode, changeMode} : NavbarProps) => {
     <NavRootDiv>
       <Container theme={theme}>
         <Link to='/'>Where in the world</Link>
-        <h6 onClick={()=>changeMode}>
+        <h6 onClick={()=>changeMode()}>
           <span>{mode === 'light' ? <img src={DarkIcon} alt='themeIcon' /> : <img src={LightIcon} alt='themeIcon' />}</span>
           {mode === 'light' ? 'Dark' : 'Light'} Mode
         </h6>
