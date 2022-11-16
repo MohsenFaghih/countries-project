@@ -5,7 +5,7 @@ import {CountriesDataType} from '../../context/ContriesContext';
 
 const CartItem = ({country, mode} : any) => ( // type for country should be corrected
     <Link 
-        to={`/country/${country.name.common}`} 
+        to={`/name/${country.name.official}`} 
         style={{
             width: 'auto', 
             textDecoration: 'none', 

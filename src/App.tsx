@@ -17,7 +17,7 @@ function App() {
         <Navbar mode={mode} changeMode={changeMode} />
         <Routes>
           <Route path='/' element={<Home mode={mode} />} />
-          <Route path='/country/:name' element={<ShowCountry />} />
+          <Route path='/name/:name' element={<ShowCountry />} />
         </Routes>
       </div>
       </BrowserRouter>
