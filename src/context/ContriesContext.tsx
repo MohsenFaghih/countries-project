@@ -7,7 +7,7 @@ type CountriesProviderProps = {
 }
 
 export type CountriesDataType = {
-    name: {common: string};
+    name: {common: string, official: any};
     population: string;
     region: string;
     capital: string[];

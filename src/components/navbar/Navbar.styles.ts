@@ -1,19 +1,21 @@
 import styled from 'styled-components';
 
 export const NavRootDiv =styled.div`
-    width: 100vw;
+    width: 100%;
     height: auto;
+    display: flex;
+    background-color: ${props => props.theme.bgColor};
     box-shadow: 0px 0px 5px -2px black;
 `;
 
-export const Container = styled.div`
+export const ContainerDiv = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
     max-height: 100px;
-    max-width: 1200px;
     margin: auto;
+    padding: 10px 0;
     color: ${props => props.theme.color};
     background-color: ${props => props.theme.bgColor}; 
 
@@ -29,6 +31,7 @@ export const Container = styled.div`
         cursor: pointer;
         display: flex;
         font-size: 0.7rem;
+        margin: 0;
     }
 
     img {

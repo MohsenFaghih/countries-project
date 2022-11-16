@@ -5,8 +5,6 @@ import {Home, ShowCountry} from './pages';
 import {Navbar} from './components';
 import { CountriesProvider } from './context/ContriesContext';
 
-import { Container } from 'react-bootstrap';
-
 function App() {
 
   const [mode, setMode] = useState('light')
