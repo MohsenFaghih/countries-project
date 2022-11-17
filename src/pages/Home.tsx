@@ -6,14 +6,14 @@ import {Container, Row} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form'
 import { HomeRootDiv, FilterDiv } from './Home.styles';
 
-
 const Home = ({mode}: any) => {
 
-  const theme = mode === 'light' 
-    ? {bgColor:'white', color: '#202d36', filterBg: 'white', filterColor: '#white'} 
-    : {bgColor:'#202d36', color: 'white', filterBg: '#2b3743', filterColor: '#d4d4d4'}
+  const {theme} = useCountries()
 
-  // let data: CountriesDataType[] = []
+  const colors = theme === 'light' 
+    ? {bgColor:'hsl(0, 0%, 98%)', color: 'hsl(200, 15%, 8%)', filterBg: 'hsl(0, 0%, 100%)', filterColor: 'hsl(0, 0%, 52%)'} 
+    : {bgColor:'hsl(207, 26%, 17%)', color: 'hsl(0, 0%, 100%)', filterBg: '#2b3743', filterColor: '#d4d4d4'}
+
   const [data, setData] = useState<CountriesDataType[]>([]);
   const [countries, setCountries] = useState<CountriesDataType[]>([]);
   const [filterRegion, setFilterRegion] = useState<string>('');
@@ -42,10 +42,10 @@ const Home = ({mode}: any) => {
   }, [data, filterRegion, filterByName])
 
   return (
-    <HomeRootDiv theme={theme}>
+    <HomeRootDiv theme={colors}>
       <Container>
-        <FilterDiv theme={theme}>
-          <input className='searchBox' placeholder='Search for a country...' onChange={(e)=> setFilterByName(e.target.value)} />
+        <FilterDiv theme={colors}>
+          <input className='searchBox w-50 w-sm-100' placeholder='Search for a country...' onChange={(e)=> setFilterByName(e.target.value)} />
           <Form.Select aria-label="Default select example" onChange={(e)=> setFilterRegion(e.target.value)} className='selectForm'>
             <option disabled>Filter by Regions</option>
             <option value=''>All Region</option>
@@ -56,10 +56,10 @@ const Home = ({mode}: any) => {
             <option value='Africa'>Africa</option>
           </Form.Select>
         </FilterDiv>
-        <Row className='justify-content-center'>
+        <Row className='justify-content-center justify-content-md-between'>
           {
             !countries.length ? <div>Loading...</div>
-            :countries.map(country => <CartItem key={country.name.common} country={country} mode={mode} />)
+            :countries.map(country => <CartItem key={country.name.common} country={country} theme={theme} />)
           }
         </Row>
       </Container>

@@ -1,4 +1,4 @@
-import {createContext, useContext} from 'react';
+import {createContext, useContext, useState} from 'react';
 
 import {fetchAllCountries, fetchCountryByName} from '../api'
 
@@ -22,6 +22,8 @@ export type CountriesDataType = {
 type ContriesContext = {
     getAllCountries: () => Promise<CountriesDataType[]>;
     getCountry: (name: string) => Promise<CountriesDataType[]>;
+    theme: string;
+    changeTheme: () => void
 }
 
 export const CountriesContext = createContext({} as ContriesContext)
@@ -40,8 +42,11 @@ export const CountriesProvider = ({children}: CountriesProviderProps) => {
         return data
     }
 
+    const [theme, setTheme] = useState<string>('light')
+    const changeTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
+
     return (
-        <CountriesContext.Provider value={{getAllCountries, getCountry}}>
+        <CountriesContext.Provider value={{getAllCountries, getCountry, theme, changeTheme}}>
             {children}
         </CountriesContext.Provider>
     )

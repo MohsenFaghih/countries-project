@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const NavRootDiv =styled.div`
+    position: relative;
     width: 100%;
     height: auto;
     display: flex;
@@ -23,15 +24,18 @@ export const ContainerDiv = styled.div`
         font-size: 1.5rem;
         font-family: tahoma;
         text-decoration: none;
-        color: inherit;
+        color: ${props => props.theme.color};
         font-weight: bold;
     }
 
     h6 {
         cursor: pointer;
         display: flex;
-        font-size: 0.7rem;
+        font-size: 14px;
         margin: 0;
+        color: ${props => props.theme.color};
+        font-weight: 600;
+        align-items: center;
     }
 
     img {

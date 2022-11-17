@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
+import searchIcon from '../assets/icons/search.svg'
+
 export const HomeRootDiv = styled.div`
     margin: auto;
     color: ${props => props.theme.color};
     background-color: ${props => props.theme.bgColor}; 
-    height: 100%;
+    min-height: 100vh;
+    height: auto;
 `
 export const FilterDiv = styled.div`
     display: flex;
@@ -32,10 +35,19 @@ export const FilterDiv = styled.div`
     }
 
     .searchBox {
-        width: 500px;
+        &::after {
+            content: url(${searchIcon});
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+        }
     }
 
     .selectForm {
         max-width: 180px;
+    }
+
+    .form-select {
+            fill: red;
     }
 `

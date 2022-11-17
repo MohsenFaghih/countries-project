@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { useCountries } from '../context/ContriesContext';
 
@@ -7,7 +7,9 @@ import {CountriesDataType} from '../context/ContriesContext';
 
 import {Container, Row, Col, Button} from 'react-bootstrap';
 
-import {Border, DetailsDiv} from './ShowCountry.styles'
+import {ShowCountryRootDiv, DetailsDiv} from './ShowCountry.styles';
+
+import { formatPopulation } from '../utils/formatPopulation';
 
 const ArrowBack = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
@@ -17,7 +19,9 @@ const ArrowBack = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" heigh
 const ShowCountry = () => {
 
   const {name} = useParams();
-  const {getCountry} = useCountries();
+  const {theme, getCountry} = useCountries();
+
+  const navigate = useNavigate()
 
   const [country, setCountry] = useState<CountriesDataType | null>(null);
 
@@ -32,63 +36,48 @@ const ShowCountry = () => {
     countryDetails();
   }, [name])
 
-  console.log(country)
-
-  const styles = {
-    buttonDiv: {
-      margin: '60px 0',
-      display: 'flex',
-      justifyContent: 'start'
-    },
-    button: {
-      border: 'none',
-      width: '130px',
-      boxShadow: '0px 0px 4px 0px grey',
-      borderRadius: '5px',
-      fontWeight: 500
-    }
-  }
-
   return (
-    <Container>
-      <div style={styles.buttonDiv}>
-        <Button style={styles.button} variant="outline-secondary" onClick={() => console.log('back')}><ArrowBack />Back</Button>
-      </div>
-      {!country ? <div>Loading</div> :
-      <Row className='justify-content-between'>
-        <Col className='p-30 justify-content-space' sm={12} md={5}>
-          <img className='w-100' src={country.flags.png} alt={country.name.official} />
-        </Col>
-        <Col sm={12} md={6}>
-          <DetailsDiv>
-            <Row>
-              <Col md={12} className='text-start mb-4 fs-2'>{country.name.official}</Col>
-              <Col md={6} sm={12} className='text-start mb-5'>
-                <div className='title'>Native Name: <span>{country.name.common}</span></div>
-                <div className='title'>Population: <span>{country.population}</span></div>
-                <div className='title'>Region: <span>{country.region}</span></div>
-                <div className='title'>Sub Region: <span>{country.subregion}</span></div>
-                <div className='title'>Capital: <span>{country.capital[0]}</span></div>
-              </Col>
-              <Col md={6} sm={12} className='text-start mb-5'>
-                <div className='title'>Top Level Domain: <span>{country.tld[0]}</span></div>
-                <div className='title'>Currencies: <span>{Object.values(country.currencies).map(currency => `${currency.name}, `)}</span></div>
-                <div className='title'>Languages: <span>{Object.values(country.languages).map(language => `${language}, `)}</span></div>
-              </Col>
-              <Col md={12} className='text-start'>
-                <Border>
-                  <div className='title me-3'>Border Countries: </div>
-                  {country.borders.map(border => (
-                    <span className='border'>{border}</span>
-                  ))}
-                </Border>
-              </Col>
-            </Row>
-          </DetailsDiv>
-        </Col>
-      </Row>
-    } 
-    </Container>
+    <ShowCountryRootDiv theme={theme}>
+      <Container>
+        <div className='btnDiv'>
+          <Button variant="outline-secondary" onClick={() => navigate('/')}><ArrowBack />Back</Button>
+        </div>
+        {!country ? <div>Loading</div> :
+        <Row className='justify-content-between'>
+          <Col className='p-30 justify-content-space' sm={12} md={5}>
+            <img className='w-100' src={country.flags.png} alt={country.name.official} />
+          </Col>
+          <Col sm={12} md={6}>
+            <DetailsDiv>
+              <Row>
+                <Col md={12} className='text-start mb-4 mt-4 mt-sm-0 fs-2'>{country.name.official}</Col>
+                <Col md={6} sm={12} className='text-start mb-5'>
+                  <div className='title'>Native Name: <span>{country.name.common}</span></div>
+                  <div className='title'>Population: <span>{formatPopulation(country.population)}</span></div>
+                  <div className='title'>Region: <span>{country.region}</span></div>
+                  <div className='title'>Sub Region: <span>{country.subregion}</span></div>
+                  <div className='title'>Capital: <span>{country.capital[0]}</span></div>
+                </Col>
+                <Col md={6} sm={12} className='text-start mb-5'>
+                  <div className='title'>Top Level Domain: <span>{country.tld[0]}</span></div>
+                  <div className='title'>Currencies: <span>{Object.values(country.currencies).map(currency => `${currency.name}, `)}</span></div>
+                  <div className='title'>Languages: <span>{Object.values(country.languages).map(language => `${language}, `)}</span></div>
+                </Col>
+                <Col md={12} className='text-start'>
+                  <div className='borderDiv'>
+                    {country.borders && <div className='title me-3'>Border Countries: </div>}
+                    {country.borders?.map(border => (
+                      <span className='border'>{border}</span>
+                    ))}
+                  </div>
+                </Col>
+              </Row>
+            </DetailsDiv>
+          </Col>
+        </Row>
+      } 
+      </Container>
+    </ShowCountryRootDiv>
   )
 }
 
