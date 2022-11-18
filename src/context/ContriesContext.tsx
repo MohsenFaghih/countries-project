@@ -1,6 +1,6 @@
 import {createContext, useContext, useState} from 'react';
 
-import {fetchAllCountries, fetchCountryByName} from '../api'
+import {fetchAllCountries, fetchCountryByName, fetchCountryByCode} from '../api'
 
 type CountriesProviderProps = {
     children: React.ReactNode
@@ -22,6 +22,7 @@ export type CountriesDataType = {
 type ContriesContext = {
     getAllCountries: () => Promise<CountriesDataType[]>;
     getCountry: (name: string) => Promise<CountriesDataType[]>;
+    getCountryByCode: (code: string) => Promise<CountriesDataType[]>;
     theme: string;
     changeTheme: () => void
 }
@@ -42,11 +43,16 @@ export const CountriesProvider = ({children}: CountriesProviderProps) => {
         return data
     }
 
+    const getCountryByCode = async (code: string) => {
+        const {data} = await fetchCountryByCode(code);
+        return data
+    }
+
     const [theme, setTheme] = useState<string>('light')
     const changeTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
 
     return (
-        <CountriesContext.Provider value={{getAllCountries, getCountry, theme, changeTheme}}>
+        <CountriesContext.Provider value={{getAllCountries, getCountry, getCountryByCode, theme, changeTheme}}>
             {children}
         </CountriesContext.Provider>
     )

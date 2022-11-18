@@ -10,14 +10,6 @@ export const HomeRootDiv = styled.div`
     height: auto;
 `
 export const FilterDiv = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 20px 0;
-
-    @media (max-width: 768px) {
-        flex-direction: column;
-    }
 
     input, select, option {
         color: ${props => props.theme.filterColor};
@@ -43,11 +35,5 @@ export const FilterDiv = styled.div`
         }
     }
 
-    .selectForm {
-        max-width: 180px;
-    }
 
-    .form-select {
-            fill: red;
-    }
 `

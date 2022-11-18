@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import { useCountries } from '../context/ContriesContext';
 import {CartItem} from '../components';
 import {CountriesDataType} from '../context/ContriesContext';
-import {Container, Row} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form'
 import { HomeRootDiv, FilterDiv } from './Home.styles';
 
@@ -45,16 +45,22 @@ const Home = ({mode}: any) => {
     <HomeRootDiv theme={colors}>
       <Container>
         <FilterDiv theme={colors}>
-          <input className='searchBox w-50 w-sm-100' placeholder='Search for a country...' onChange={(e)=> setFilterByName(e.target.value)} />
-          <Form.Select aria-label="Default select example" onChange={(e)=> setFilterRegion(e.target.value)} className='selectForm'>
-            <option disabled>Filter by Regions</option>
-            <option value=''>All Region</option>
-            <option value='Asia'>Asia</option>
-            <option value='Europe'>Europe</option>
-            <option value='Oceania'>Oceania</option>
-            <option value='Americas'>Americas</option>
-            <option value='Africa'>Africa</option>
-          </Form.Select>
+          <Row className='justify-content-between pt-4 pb-4'>
+            <Col xs={12} sm={12} md={5} lg={4}>
+              <input className='searchBox w-100' placeholder='Search for a country...' onChange={(e)=> setFilterByName(e.target.value)} />
+            </Col>
+            <Col xs={6} sm={6} md={5} lg={3} xl={3}>
+              <Form.Select aria-label="Default select example" onChange={(e)=> setFilterRegion(e.target.value)} className='selectForm w-100'>
+                <option disabled>Filter by Regions</option>
+                <option value=''>All Region</option>
+                <option value='Asia'>Asia</option>
+                <option value='Europe'>Europe</option>
+                <option value='Oceania'>Oceania</option>
+                <option value='Americas'>Americas</option>
+                <option value='Africa'>Africa</option>
+              </Form.Select>
+            </Col>
+          </Row>
         </FilterDiv>
         <Row className='justify-content-center justify-content-md-between'>
           {
