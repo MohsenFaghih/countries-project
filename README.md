@@ -9,6 +9,10 @@ Also you can search amonge them by using their name and filter by Region.
 
 It is created with Dark and Light mode theme and Responsive.
 
+![alt text](https://github.com/MohsenFaghih/countries-project/blob/main/src/assets/preview/1.png?raw=true)
+![alt text](https://github.com/MohsenFaghih/countries-project/blob/main/src/assets/preview/2.png?raw=true)
+![alt text](https://github.com/MohsenFaghih/countries-project/blob/main/src/assets/preview/3.png?raw=true)
+
 ## Technologies
 
 This project is using Typescript, and React.js
