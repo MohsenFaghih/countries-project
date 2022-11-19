@@ -1,8 +1,19 @@
-# Getting Started with Create React App
+# Project Name
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is Countries details provider.
 
-## Available Scripts
+## Project Description
+
+You can see all countries details ranging from population to languages, flag and more.
+Also you can search amonge them by using their name and filter by Region.
+
+It is created with Dark and Light mode theme and Responsive.
+
+## Technologies
+
+This project is using Typescript, and React.js
+For syling it uses Styled-components and Bootstrap
+In React.js it is also using context to provide api data whole over the project.
 
 In the project directory, you can run:
 
