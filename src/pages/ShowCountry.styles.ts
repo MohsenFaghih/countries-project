@@ -37,7 +37,7 @@ export const ShowCountryRootDiv = styled.div`
             color: ${props => props.theme === 'light' ? 'hsl(200, 15%, 8%)' : 'hsl(0, 0%, 100%)'};
             box-shadow: 0px 0px 4px 0px ${props => props.theme === 'light' ? '#8080806e' : '#0000006e'};
             border-radius: 3px;
-            margin: 5px;
+            margin: 5px 5px 5px 0;
             text-align: center;
             border: none !important
         }

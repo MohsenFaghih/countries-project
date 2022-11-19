@@ -64,7 +64,12 @@ const Home = ({mode}: any) => {
         </FilterDiv>
         <Row className='justify-content-center justify-content-md-between'>
           {
-            !countries.length ? <div>Loading...</div>
+            !countries.length ? 
+              <div className="mt-5 d-flex justify-content-center">
+                <div className="spinner-grow" role="status">
+                  <span className="sr-only"></span>
+                </div>
+              </div>
             :countries.map(country => <CartItem key={country.name.common} country={country} theme={theme} />)
           }
         </Row>

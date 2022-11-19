@@ -46,6 +46,16 @@ const ShowCountry = () => {
       .catch(err=> {throw err})
   }
 
+  if(!country) {
+    return(
+      <div className="mt-5 d-flex justify-content-center">
+        <div className="spinner-grow" role="status">
+          <span className="sr-only"></span>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <ShowCountryRootDiv theme={theme}>
       <Container>
@@ -75,7 +85,7 @@ const ShowCountry = () => {
                 </Col>
                 <Col md={12} className='text-start'>
                   <div className='borderDiv'>
-                    {borders.length ? <div className='title me-3'>Border Countries: </div> : ''}
+                    {borders.length ? <div className='title me-3 d-block d-sm-inline-block d-md-inline-block d-lg-inline-block'>Border Countries: </div> : ''}
                     {borders.length ? borders.map((border:string) => (
                       <span className='border'>{border}</span>
                     )) : ''}
